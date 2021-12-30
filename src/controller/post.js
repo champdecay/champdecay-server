@@ -23,7 +23,17 @@ exports.get = async (req, res) => {
 exports.getByID = async (req, res) => {
     const { id } = req.params
     try {
-        const posts = await Post.findById(id, 'name')
+        const posts = await Post.findById(id)
+        res.status(200).json(posts)
+    } catch (error) {
+        res.status(400).json(error)
+    }
+}
+
+exports.getBySlug = async (req, res) => {
+    const { slug } = req.params
+    try {
+        const posts = await Post.find({ slug })
         res.status(200).json(posts)
     } catch (error) {
         res.status(400).json(error)
