@@ -33,7 +33,7 @@ exports.getByID = async (req, res) => {
 exports.getBySlug = async (req, res) => {
     const { slug } = req.params
     try {
-        const posts = await Post.find({ slug })
+        const posts = await Post.findOne({ slug })
         res.status(200).json(posts)
     } catch (error) {
         res.status(400).json(error)
