@@ -13,7 +13,7 @@ exports.create = async (req, res) => {
 
 exports.get = async (req, res) => {
     try {
-        const posts = await Post.find({}).sort('createdAt')
+        const posts = await Post.find({}).sort({ 'createdAt': -1 })
         res.status(200).json(posts)
     } catch (error) {
         res.status(400).json(error)
