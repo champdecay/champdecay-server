@@ -1,6 +1,7 @@
 const express = require("express"),
     cors = require("cors"),
-    mongoose = require("mongoose");
+    mongoose = require("mongoose"),
+    expressGraphQL = require("express-graphql").graphqlHTTP;
 const PORT = process.env.PORT || 8080;
 const app = express()
 
@@ -23,6 +24,11 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/v1', require('./routes/index'));
+
+app.use('/api/v2/graphql', expressGraphQL({
+    schema: require('./graphql/schema'),
+    graphiql: true
+}));
 
 app.listen(PORT, () => console.log(`Server Running on ${PORT}`));
 
