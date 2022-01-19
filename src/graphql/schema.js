@@ -1,5 +1,6 @@
 const { GraphQLSchema, GraphQLObjectType, GraphQLList, GraphQLInt, GraphQLString, GraphQLNonNull } = require('graphql');
 const Post = require("../models/post")
+const slugify = require("slugify")
 
 
 const PostType = new GraphQLObjectType({
